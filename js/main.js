@@ -20,9 +20,13 @@ console.log('Доход: ', money);
 console.log('Возможные расходы:  ', addExpenses);
 
 //Типы данных
-console.log('Типы данных "money": ', typeof money);
-console.log('Типы данных: "возможные расходы": ' , typeof addExpenses);
-console.log('Типы данных: "депозит": ', typeof deposit);
+let showTypeof = function(data) {
+  console.log(data, typeof(data));
+};
+
+showTypeof(money);
+showTypeof(addExpenses);
+showTypeof(deposit);
 
 if (mission > 0) {
 console.log('Вы достигнете свою цель через: ', Math.ceil(mission), ' месяцев');
@@ -30,17 +34,33 @@ console.log('Вы достигнете свою цель через: ', Math.cei
   console.log('Вы никогда не достигните своей цели!');
 }
 
+let getStatusIncome = function () { 
+  if (budgetDay > 800) {
+    return ('У вас высокий уровень дохода!');
+  } else if (budgetDay > 300 && budgetDay <= 800) {
+    return ('У вас средний уровень дохода!');
+  } else if (budgetDay <= 300 && budgetDay > 0) {
+    return ('У вас низкий уровень дохода!');
+  } else if (budgetDay < 0) {
+    return ('Соболезную!');
+  }
+ };
 
-if (budgetDay > 800) {
-  console.log('У вас высокий уровень дохода!');
-} else if (budgetDay > 300 && budgetDay <= 800) {
-  console.log('У вас средний уровень дохода!');
-} else if (budgetDay <= 300 && budgetDay > 0) {
-  console.log('У вас низкий уровень дохода!');
-} else if (budgetDay < 0) {
-  console.log('Соболезную!');
+console.log(getStatusIncome());
+
+
+
+function getExpensesMont(){
+  return Number(spending1 + spending2);
 }
 
+function getAccumulatedMonth() {
+  return money - getExpensesMont();
+}
+
+let accumulatedMonth = getAccumulatedMonth();
+
+console.log('остаток суммы ', accumulatedMonth);
 
 
 
