@@ -1,5 +1,5 @@
 'use strict';
-
+/* 
 let money,
     start = function() {
       money = prompt('Ваш месячный доход?', 60000);
@@ -50,24 +50,19 @@ let appData = {
           appData.deposit = confirm('У вас есть депозит в банке?');
           
           for (let i = 0; i < 2; i++) {
-            let itemExpenses;
+            let itemExpenses = prompt('Введите обязательную статью расходов', 'Кварплата');
             let CashExpenses;
-            do {
-              itemExpenses = prompt('Введите обязательную статью расходов', 'Кварплата');
-            } 
-            while(Number(itemExpenses) || itemExpenses === '' || itemExpenses === null);
-            
             do {
               CashExpenses = prompt('Во сколько это обойдется?', 2500);
             } 
             while (isNaN(CashExpenses) || CashExpenses === '' || CashExpenses === null);
 
-            appData.expenses[itemExpenses] = CashExpenses;
+            appData.expenses[itemExpenses] = +CashExpenses;
           }
     },
     getExpensesMonth: function() {
       for (let key in appData.expenses) {
-        appData.expensesMonth += +appData.expenses[key];
+        appData.expensesMonth += appData.expenses[key];
       }
     },
     getBudget: function(){
@@ -120,8 +115,24 @@ console.log("Цель будет достигнута за " + Math.ceil(appData
 
 console.log(appData.getStatusIncome());
 
-/* for (let key in appData) {
+for (let key in appData) {
   console.log('Наша программа включает в себя данные: ' + key + ' - ' + appData[key]);
-} */
+}
 
-console.log(appData.addExpenses.split(', '));
+console.log(appData.addExpenses.split(', ')); */
+
+let button = document.getElementById('start'),
+    buttons = document.getElementsByTagName('button'),
+    button1 = buttons[0],
+    button2 = buttons[1],
+    checkBox = document.querySelector('#deposit-check'),
+    inputIncome = document.querySelectorAll('.additional_income-item'),
+    budgetValue = document.querySelector('.budget_month-value'),
+    expMonthValue = document.querySelector('.expenses_month-value'),
+    incomeValue = document.querySelector('.additional_income-value'),
+    addExpValue = document.querySelector('.additional_expenses-value'),
+    incomePeriodValue = document.querySelector('.income_period-value'),
+    targetMonthVal = document.querySelector('.target_month-value');
+   
+
+
