@@ -72,6 +72,15 @@ let appData = {
         expensesPlus.style.display = 'none';
       }
     },
+    addIncomeBlock: function() {
+      let cloneIncomeItem = incomeItem[0].cloneNode(true);
+      incomeItem[0].parentNode.insertBefore(cloneIncomeItem, incomePlus);
+      incomeItem = document.querySelectorAll('.income-items');
+
+      if (incomeItem.length === 3) {
+        incomePlus.style.display = 'none';
+      }
+    },
     getExpenses: function() { 
       expensesItems.forEach(function(item) {
         let itemExpenses = item.querySelector('.expenses-title').value;
@@ -82,14 +91,14 @@ let appData = {
       });
      },
      getIncome: function () {
-      if (confirm('Есть ли у вас допльнительный источник заработка?')) {
-        let itemIncome = prompt('Какой допльнительный заработок?', 'Таксую');
-        let cashIncome = prompt('Сколько в месяц на этом зарабатываете?', 15000);
-        appData.income[itemIncome] = cashIncome;
-      }
-      for (let key in appData.income) {
-        appData.incomeMonth += +appData.income[key];
-      }
+       incomeItem.forEach(function(item){
+        let itemIncome = item.querySelector('.expenses-title').value;
+        let cashIncome = item.querySelector('.expenses-amount').value;
+       
+        if (itemIncome !== '' && cashIncome !== '') {
+          appData.income[itemIncome] = cashIncome;
+        }
+      });
       },
      getAddExpenses: function () {
         let addExpenses = additinonalExpensesItem.value.split(',');
@@ -148,6 +157,7 @@ let appData = {
 
 start.addEventListener('click', appData.start);
 expensesPlus.addEventListener('click', appData.addExpensesBlock);
+incomePlus.addEventListener('click', appData.addIncomeBlock);
 
 /* if (appData.getTargetMonth() > 0) {
 console.log("Цель будет достигнута за " + Math.ceil(appData.getTargetMonth()) + ' месяцев');
